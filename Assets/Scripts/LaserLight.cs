@@ -20,6 +20,7 @@ public class LaserLight : MonoBehaviour
 
     [SerializeField] GameObject adUI;
 
+
     // Start is called before the first frame update
     void Start()
     {
