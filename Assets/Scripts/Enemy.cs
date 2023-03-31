@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    Chips chips;
+    //Chips chips;
     BgmPlayer bgmPlayer;
 
     public float lookRadius = 10f;
@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
         target = FindObjectOfType<PlayerObj>().transform;
         //transform.rotation = Quaternion.Euler(-90, 0, 0);
 
-        chips = FindObjectOfType<Chips>();
+        //chips = FindObjectOfType<Chips>();
 
         enemyAudio = GetComponent<AudioSource>();
         //audio.Pause();
@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
         {
             float distance = Vector3.Distance(target.position, transform.position);
 
-            if (distance <= lookRadius && chips.isSuccess == false)
+            if (distance <= lookRadius)
             {
                 agent.SetDestination(target.position);
                 FaceTarget();

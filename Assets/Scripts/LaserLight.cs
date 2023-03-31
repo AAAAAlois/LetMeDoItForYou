@@ -7,7 +7,7 @@ public class LaserLight : MonoBehaviour
     LineRenderer lineRenderer;
 
     [Header("Player Reference")]
-    [SerializeField] GameObject playerPrefab;
+    [SerializeField] GameObject playerPrefab;    //it must be the prefab, don't drag from hierachy
     [SerializeField] Transform RestartPoint;
 
     [Header("Move Laser")]
@@ -17,6 +17,8 @@ public class LaserLight : MonoBehaviour
     Vector3 startPos;
     [SerializeField] Vector3 endPos;
     bool isMovingToEnd = true;
+
+    [SerializeField] GameObject adUI;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +52,8 @@ public class LaserLight : MonoBehaviour
 
             if (hit.transform.tag == "Player")
             {
+                //Debug.Log(hit.transform.parent.gameObject);
+                PlayAd();
                 Destroy(hit.transform.parent.gameObject);
                 //Destroy(player);
                 Instantiate(playerPrefab, RestartPoint.position, Quaternion.identity);
@@ -82,6 +86,20 @@ public class LaserLight : MonoBehaviour
             }
         }
 
+    }
+
+    void PlayAd()
+    {
+        adUI.SetActive(true);
+
+        StartCoroutine(Disappear());
+    }
+
+    IEnumerator Disappear()
+    {
+        yield return new WaitForSeconds(5f);
+
+        adUI.SetActive(false);
     }
 
 

@@ -18,6 +18,8 @@ public class Grappling : MonoBehaviour
     [SerializeField] float jointDamper;
     [SerializeField] float jointMassScale;
 
+    GameObject noseWarn;
+
     AudioSource grappleAudio;
 
     // Start is called before the first frame update
@@ -25,7 +27,9 @@ public class Grappling : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         grappleAudio = GetComponent<AudioSource>();
-        
+
+        noseWarn = GameObject.FindGameObjectWithTag("warnUI").transform.GetChild(1).gameObject;
+
     }
 
     // Update is called once per frame
@@ -70,6 +74,18 @@ public class Grappling : MonoBehaviour
             Debug.Log("grapple");
             grappleAudio.Play();
         }
+        else
+        {
+            noseWarn.SetActive(true);
+            StartCoroutine(Disappear());
+        }
+    }
+
+    IEnumerator Disappear()
+    {
+        yield return new WaitForSeconds(2f);
+
+        noseWarn.SetActive(false);
     }
 
     private void StopGrapple()

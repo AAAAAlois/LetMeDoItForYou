@@ -7,7 +7,7 @@ public class BgmPlayer : MonoBehaviour
     public static BgmPlayer instance = null;
 
 
-    private void Awake()
+    private void KeepBGM()
     {
 
         if (instance == null)
